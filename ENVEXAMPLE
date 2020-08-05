@@ -1,0 +1,13 @@
+EP_USERNAME=<username>
+EP_PASSWORD=<password>
+EP_ADDRESS=<ip address>
+
+HA_ADDRESS=<hostname or ip address>
+HA_PORT=<tcp port>
+HA_API_KEY=<api key>
+HA_ZWAVE_NODE_ID=<zwave node id>
+HA_ZWAVE_PARAMETER=16
+HA_ZWAVE_SIZE=4
+HA_ZWAVE_ON_VIDEO=<on video notification value>
+HA_ZWAVE_ON_CALL=<on call notificaiton value>
+HA_ZWAVE_OFF=<turn off notification value>

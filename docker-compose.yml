@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+
+  wsmonitor:
+    build: .
+    command: python3 websocket-monitor.py
+    container_name: wsmonitor
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    env_file:
+      - '.env'
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
