@@ -2,7 +2,7 @@
 #
 # Cisco Webex Endpoint Websocket Monitor
 # Written by Nick Thompson (@nsthompson)
-# Copyright (C) 2020
+# Copyright (C) 2020 World Wide Technology
 # All Rights Reserved
 #
 
