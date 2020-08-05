@@ -4,7 +4,7 @@
 
 With an increase in the number of people and families working from home at the same time, being able to alert your spouse, partner, or roommate(s) that you are on an audio or video call is becoming increasingly important.
 
-To solve this challenge, this application leverages the xAPI available on Cisco Telepresence Endpoints, as well as the Home-Assistant (https://www.home-assistant.io) home automation platform to trigger notification alerts on Inovelli (https://inovelli.com/) Red-Series Z-Wave Dimmers.
+To solve this challenge, this application leverages the xAPI available on Cisco Webex Endpoints, as well as the Home-Assistant (https://www.home-assistant.io) home automation platform to trigger notification alerts on Inovelli (https://inovelli.com/) Red-Series Z-Wave Dimmers.
 
 This application connects to a Cisco Webex Endpoint via Websockets and subscribe to state events from the endpoint including:
 
