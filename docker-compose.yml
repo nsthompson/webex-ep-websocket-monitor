@@ -11,4 +11,4 @@ services:
     env_file:
       - '.env'
     restart: always
-    networks_mode: host
+    network_mode: host
