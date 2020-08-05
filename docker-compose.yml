@@ -10,9 +10,5 @@ services:
       PYTHONUNBUFFERED: 'true'
     env_file:
       - '.env'
-    networks:
-      - local
-
-networks:
-  local:
-    driver: bridge
+    restart: always
+    networks_mode: host
