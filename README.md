@@ -1,5 +1,7 @@
 # Cisco Webex Endpoint xAPI Monitor
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/nsthompson/webex-ep-websocket-monitor)
+
 ## Abstract
 
 With an increase in the number of people and families working from home at the same time, being able to alert your spouse, partner, or roommate(s) that you are on an audio or video call is becoming increasingly important.
