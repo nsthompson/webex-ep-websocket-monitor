@@ -44,12 +44,12 @@ Docker-Compose file for creating and running the container
 ## Requirements
 
 * python 3.8
-* Docker Compose
-* Docker Engine or Docker Desktop
+* Docker Compose (https://docs.docker.com/compose/)
+* Docker Engine or Docker Desktop (https://www.docker.com/)
 * Compatible Cisco WebEx Endpoint with API Access and Websockets Enabled
     * Can be on-premise or cloud registered
-* Home-Assistant Home Automation Platform
-* Inovelli Red Series Dimmers
+* Home-Assistant Home Automation Platform (https://www.home-assistant.io)
+* Inovelli Red Series Dimmers (https://www.inovelli.com/)
 
 ## Cisco Webex Endpoint Requirements
 
@@ -96,14 +96,28 @@ Docker-Compose file for creating and running the container
 4. Build and start the container using docker-compose
 
     ```shell
-    sudo docker-compose up --build
+    sudo docker-compose up -d --build
     ```
+
+    ![docker-compose](./docs/images/docker-compose-up-build.gif)
 
 5. View the Container Logs if Necessary
 
     ```shell
-    sudo docker logs wsmonitor --tail all
+    sudo docker-compose logs wsmonitor --tail all
     ```
+
+    ![docker-compose-logs](./docs/images/docker-compose-logs.gif)
+
+## Active Notifications
+
+* On An Audio Call (Value: 50268693)
+
+    ![audio-call](./docs/images/audio-call.jpg)
+
+* Video Call (Value: 50268927)
+
+    ![video-call](./docs/images/video-call.jpg)
 
 ## Contributors
 
