@@ -109,9 +109,9 @@ Docker-Compose file for creating and running the container
 
     ![docker-compose-logs](./docs/images/docker-compose-logs.gif)
 
-## Active Notifications
+## Active Notification Examples
 
-* On An Audio Call (Value: 50268693)
+* Audio Call (Value: 50268693)
 
     ![audio-call](./docs/images/audio-call.jpg)
 
