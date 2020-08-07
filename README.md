@@ -104,7 +104,7 @@ Docker-Compose file for creating and running the container
 5. View the Container Logs if Necessary
 
     ```shell
-    sudo docker-compose logs wsmonitor --tail all
+    sudo docker-compose logs -f
     ```
 
     ![docker-compose-logs](./docs/images/docker-compose-logs.gif)
