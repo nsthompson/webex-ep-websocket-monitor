@@ -46,9 +46,9 @@ async def readWebSocket(host, username, password, queue, log=None):
         )
 
         # Build the payload to subscribe to system state events
-        payload = {
+        system_payload = {
             "jsonrpc": "2.0",
-            "id": "123",
+            "id": "100",
             "method": "xFeedback/Subscribe",
             "params": {
                 "Query": [
@@ -60,9 +60,30 @@ async def readWebSocket(host, username, password, queue, log=None):
             }
         }
 
+        # Build the payload to subscribe to video state events
+        video_payload = {
+            "jsonrpc": "2.0",
+            "id": "200",
+            "method": "xFeedback/Subscribe",
+            "params": {
+                "Query": [
+                    "Status",
+                    "Video",
+                    "Input",
+                    "MainVideoMute"
+                ],
+                "NotifyCurrentValue": True
+            }
+        }
+
         # Subscribe to System State Events
-        await ws.send(json.dumps(payload))
-        msg = f'{datetime.now()} Sending: {json.dumps(payload)}'
+        await ws.send(json.dumps(system_payload))
+        msg = f'{datetime.now()} Sending: {json.dumps(system_payload)}'
+        log.warning(msg)
+
+        # Subscribe to Video State Events
+        await ws.send(json.dumps(video_payload))
+        msg = f'{datetime.now()} Sending: {json.dumps(video_payload)}'
         log.warning(msg)
 
         while True:
@@ -137,40 +158,61 @@ def parse_recv_data(data, sn_obj, log=None):
     # Convert Received Data to JSON
     data_dict = json.loads(data)
     if data_dict.get("params") is not None:
-        NumberOfActiveCalls = (
-            data_dict['params']['Status']
-            ['SystemUnit']['State'].get("NumberOfActiveCalls")
-        )
-        CameraLid = (
-            data_dict['params']['Status']
-            ['SystemUnit']['State'].get("CameraLid")
-        )
+        if data_dict['params']['Status'].get("SystemUnit") is not None:
+            NumberOfActiveCalls = (
+                data_dict['params']['Status']
+                ['SystemUnit']['State'].get("NumberOfActiveCalls")
+            )
+            Camera = (
+                data_dict['params']['Status']
+                ['SystemUnit']['State'].get("CameraLid")
+            )
 
-        if CameraLid == "Open":
-            sn_obj.onvideo = True
-        elif CameraLid == "Closed":
-            sn_obj.onvideo = False
+            if Camera == "Open":
+                sn_obj.onvideo = True
+            elif Camera == "Closed":
+                sn_obj.onvideo = False
 
-        if NumberOfActiveCalls == 1:
-            msg = f'{datetime.now()} Active Calls: {NumberOfActiveCalls}'
-            sn_obj.oncall = True
-            log.warning(msg)
-        elif NumberOfActiveCalls == 0:
-            msg = f'{datetime.now()} Active Calls: {NumberOfActiveCalls}'
-            sn_obj.oncall = False
-            log.warning(msg)
+            if NumberOfActiveCalls == 1:
+                msg = f'{datetime.now()} Active Calls: {NumberOfActiveCalls}'
+                sn_obj.oncall = True
+                log.warning(msg)
+            elif NumberOfActiveCalls == 0:
+                msg = f'{datetime.now()} Active Calls: {NumberOfActiveCalls}'
+                sn_obj.oncall = False
+                log.warning(msg)
+        elif data_dict['params']['Status'].get("Video") is not None:
+            Camera = (
+                data_dict['params']['Status']['Video']
+                ['Input'].get("MainVideoMute")
+            )
 
-        if sn_obj.oncall and sn_obj.onvideo:
+            # Video Mute On = No Video Being Transmitted
+            if Camera == "On":
+                sn_obj.onvideo = False
+            elif Camera == "Off":
+                sn_obj.onvideo = True
+
+        if sn_obj.oncall and sn_obj.onvideo and not sn_obj.vidnotification:
             msg = f'{datetime.now()} Turning on Video Notification'
             log.warning(msg)
             sn_obj.notifier.video_notification_on()
-            sn_obj.notification = True
-        elif sn_obj.oncall and not sn_obj.onvideo:
+            sn_obj.vidnotification = True
+            sn_obj.callnotification = False
+        elif (
+            sn_obj.oncall
+            and not sn_obj.onvideo
+            and not sn_obj.callnotification
+        ):
             msg = f'{datetime.now()} Turning on Call Notification'
             log.warning(msg)
             sn_obj.notifier.call_notification_on()
-            sn_obj.notification = True
-        elif not sn_obj.oncall and sn_obj.notification:
+            sn_obj.callnotification = True
+            sn_obj.vidnotification = False
+        elif (
+            not sn_obj.oncall
+            and (sn_obj.vidnotification or sn_obj.callnotification)
+        ):
             msg = f'{datetime.now()} Turning off Notification'
             log.warning(msg)
             sn_obj.notifier.notification_off()
@@ -197,7 +239,8 @@ def main():
     sn_obj = types.SimpleNamespace()
     sn_obj.oncall = False
     sn_obj.onvideo = False
-    sn_obj.notification = False
+    sn_obj.callnotification = False
+    sn_obj.vidnotification = False
 
     # Instantiate Notifications
     sn_obj.notifier = Notifications(log)
