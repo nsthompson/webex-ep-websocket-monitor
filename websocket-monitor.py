@@ -163,14 +163,14 @@ def parse_recv_data(data, sn_obj, log=None):
                 data_dict['params']['Status']
                 ['SystemUnit']['State'].get("NumberOfActiveCalls")
             )
-            Camera = (
+            CameraLid = (
                 data_dict['params']['Status']
                 ['SystemUnit']['State'].get("CameraLid")
             )
 
-            if Camera == "Open":
+            if CameraLid == "Open":
                 sn_obj.onvideo = True
-            elif Camera == "Closed":
+            elif CameraLid == "Closed":
                 sn_obj.onvideo = False
 
             if NumberOfActiveCalls == 1:
@@ -182,15 +182,15 @@ def parse_recv_data(data, sn_obj, log=None):
                 sn_obj.oncall = False
                 log.warning(msg)
         elif data_dict['params']['Status'].get("Video") is not None:
-            Camera = (
+            MainVideoMute = (
                 data_dict['params']['Status']['Video']
                 ['Input'].get("MainVideoMute")
             )
 
-            # Video Mute On = No Video Being Transmitted
-            if Camera == "On":
+            # MainVideoMute On = No Video Being Transmitted
+            if MainVideoMute == "On":
                 sn_obj.onvideo = False
-            elif Camera == "Off":
+            elif MainVideoMute == "Off":
                 sn_obj.onvideo = True
 
         if sn_obj.oncall and sn_obj.onvideo and not sn_obj.vidnotification:
