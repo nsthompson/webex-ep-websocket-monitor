@@ -163,15 +163,6 @@ def parse_recv_data(data, sn_obj, log=None):
                 data_dict['params']['Status']
                 ['SystemUnit']['State'].get("NumberOfActiveCalls")
             )
-            CameraLid = (
-                data_dict['params']['Status']
-                ['SystemUnit']['State'].get("CameraLid")
-            )
-
-            if CameraLid == "Open":
-                sn_obj.onvideo = True
-            elif CameraLid == "Closed":
-                sn_obj.onvideo = False
 
             if NumberOfActiveCalls == 1:
                 msg = f'{datetime.now()} Active Calls: {NumberOfActiveCalls}'
