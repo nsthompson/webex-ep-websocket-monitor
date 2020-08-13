@@ -216,7 +216,8 @@ def parse_recv_data(data, sn_obj, log=None):
             msg = f'{datetime.now()} Turning off Notification'
             log.warning(msg)
             sn_obj.notifier.notification_off()
-            sn_obj.notification = False
+            sn_obj.vidnotification = False
+            sn_obj.callnotification = False
 
 
 def main():
