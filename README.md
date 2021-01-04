@@ -81,9 +81,9 @@ Docker-Compose file for creating and running the container
     | HA_ADDRESS | Home-Assistant Hostname or IP Address |
     | HA_PORT | Home-Assistant TCP Port |
     | HA_API_KEY | Home-Assistant API Key |
-    | HA_ZWAVE_NODE_ID | Home-Assistant ZWave Node ID - ID of Device you are triggering alerts on|
+    | HA_ZWAVE_NODE_ID | Home-Assistant ZWave Node ID - ID of Device you are triggering alerts on |
+    | HA_ZWAVE_INSTANCE_ID | Home-Assistant OpenZWave Instance ID |
     | HA_ZWAVE_PARAMETER | ZWave Configuration Parameter - Should be 16 for Inovelli Switches |
-    | HA_ZWAVE_SIZE | ZWave Size Parameter - Should be 4 for Inovelli Switches |
     | HA_ZWAVE_ON_VIDEO | Numeric Parameter Value for On Video Notificaton |
     | HA_ZWAVE_ON_CALL | Numeric Parameter Value for On Call Notificaton |
     | HA_ZWAVE_OFF | Numeric Parameter Value for turning off Notifications |
