@@ -22,8 +22,8 @@ class Notifications:
 
         # Load Specific ZWave Configuration Values
         self.ha_zwave_node_id = os.environ.get('HA_ZWAVE_NODE_ID')
+        self.ha_zwave_instance_id = os.environ.get('HA_ZWAVE_INSTANCE_ID')
         self.ha_zwave_parameter = os.environ.get('HA_ZWAVE_PARAMETER')
-        self.ha_zwave_size = os.environ.get('HA_ZWAVE_SIZE')
         self.ha_zwave_on_video = os.environ.get('HA_ZWAVE_ON_VIDEO')
         self.ha_zwave_on_call = os.environ.get('HA_ZWAVE_ON_CALL')
         self.ha_zwave_off = os.environ.get('HA_ZWAVE_OFF')
@@ -34,9 +34,9 @@ class Notifications:
     def video_notification_on(self):
         # Turn on Video Notification
         set_param = self.ha.set_zwave_config_parameter(
+                self.ha_zwave_instance_id,
                 self.ha_zwave_node_id,
                 self.ha_zwave_parameter,
-                self.ha_zwave_size,
                 self.ha_zwave_on_video
         )
         if set_param == []:
@@ -52,9 +52,9 @@ class Notifications:
     def call_notification_on(self):
         # Turn on Call Notification
         set_param = self.ha.set_zwave_config_parameter(
+                self.ha_zwave_instance_id,
                 self.ha_zwave_node_id,
                 self.ha_zwave_parameter,
-                self.ha_zwave_size,
                 self.ha_zwave_on_call
         )
         if set_param == []:
@@ -70,9 +70,9 @@ class Notifications:
     def notification_off(self):
         # Turn off Notifications
         set_param = self.ha.set_zwave_config_parameter(
+                self.ha_zwave_instance_id,
                 self.ha_zwave_node_id,
                 self.ha_zwave_parameter,
-                self.ha_zwave_size,
                 self.ha_zwave_off
         )
         if set_param == []:

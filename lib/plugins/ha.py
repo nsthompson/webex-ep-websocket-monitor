@@ -95,13 +95,19 @@ class HA:
 
         return(off_result)
 
-    def set_zwave_config_parameter(self, node_id, parameter, size, value):
-        endpoint = f'{self.base_url}/services/zwave/set_config_parameter'
+    def set_zwave_config_parameter(
+        self,
+        instance_id,
+        node_id,
+        parameter,
+        value
+    ):
+        endpoint = f'{self.base_url}/services/ozw/set_config_parameter'
 
         payload_dict = {
+            "instance_id": instance_id,
             "node_id": node_id,
             "parameter": parameter,
-            "size": size,
             "value": value
         }
 
