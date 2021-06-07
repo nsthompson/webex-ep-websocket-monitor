@@ -6,7 +6,7 @@
 
 With an increase in the number of people and families working from home at the same time, being able to alert your spouse, partner, children, or roommates that you are on an audio or video call is becoming increasingly important.
 
-To solve this challenge, this application leverages the xAPI available on Cisco Webex Endpoints, as well as the Home-Assistant (https://www.home-assistant.io) home automation platform to trigger notification alerts on Inovelli (https://inovelli.com/) Red-Series Z-Wave Dimmers.
+To solve this challenge, this application leverages the xAPI available on Cisco Webex Endpoints, as well as the Home-Assistant (<https://www.home-assistant.io>) home automation platform to trigger notification alerts on Inovelli (<https://inovelli.com/>) Red-Series Z-Wave Dimmers.
 
 This application connects to a Cisco Webex Endpoint via Websockets and subscribe to state events from the endpoint including:
 
@@ -44,22 +44,22 @@ Docker-Compose file for creating and running the container
 ## Requirements
 
 * python 3.8
-* Docker Compose (https://docs.docker.com/compose/)
-* Docker Engine or Docker Desktop (https://www.docker.com/)
+* Docker Compose (<https://docs.docker.com/compose/>)
+* Docker Engine or Docker Desktop (<https://www.docker.com/>)
 * Compatible Cisco WebEx Endpoint with API Access and Websockets Enabled
-    * Can be on-premise or cloud registered
-* Home-Assistant Home Automation Platform (https://www.home-assistant.io)
-* Inovelli Red Series Dimmers (https://www.inovelli.com/)
+  * Can be on-premise or cloud registered
+* Home-Assistant Home Automation Platform (<https://www.home-assistant.io>)
+* Inovelli Red Series Dimmers (<https://www.inovelli.com/>)
 
 ## Cisco Webex Endpoint Requirements
 
 1. If cloud registered, create a local-admin account on the endpoint for API access
-   
-   https://help.webex.com/en-us/jkhs20/Local-User-Administration-on-Room-and-Desk-Devices
+
+   <https://help.webex.com/en-us/jkhs20/Local-User-Administration-on-Room-and-Desk-Devices>
 
 2. Enable API and WebSockets
-   
-   https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce912/collaboration-endpoint-software-api-reference-guide-ce912.pdf
+
+   <https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce912/collaboration-endpoint-software-api-reference-guide-ce912.pdf>
 
 ## Getting Started
 
@@ -81,17 +81,16 @@ Docker-Compose file for creating and running the container
     | HA_ADDRESS | Home-Assistant Hostname or IP Address |
     | HA_PORT | Home-Assistant TCP Port |
     | HA_API_KEY | Home-Assistant API Key |
-    | HA_ZWAVE_NODE_ID | Home-Assistant ZWave Node ID - ID of Device you are triggering alerts on |
-    | HA_ZWAVE_INSTANCE_ID | Home-Assistant OpenZWave Instance ID |
+    | HA_ZWAVE_DEVICE_ID | Home-Assistant ZWave Device ID - ID of Device you are triggering alerts on |
     | HA_ZWAVE_PARAMETER | ZWave Configuration Parameter - Should be 16 for Inovelli Switches |
     | HA_ZWAVE_ON_VIDEO | Numeric Parameter Value for On Video Notificaton |
     | HA_ZWAVE_ON_CALL | Numeric Parameter Value for On Call Notificaton |
     | HA_ZWAVE_OFF | Numeric Parameter Value for turning off Notifications |
 
-    Note: 
+    Note:
     To calculate the Numeric Parameters for ON_VIDEO, ON_CALL, and OFF see the following site:
 
-    https://nathanfiscus.github.io/inovelli-notification-calc/
+    <https://nathanfiscus.github.io/inovelli-notification-calc/>
 
 4. Build and start the container using docker-compose
 

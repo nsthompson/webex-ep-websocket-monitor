@@ -97,16 +97,17 @@ class HA:
 
     def set_zwave_config_parameter(
         self,
-        instance_id,
-        node_id,
+        device_id,
         parameter,
         value
     ):
-        endpoint = f'{self.base_url}/services/ozw/set_config_parameter'
+        endpoint = (
+            f'{self.base_url}/services/zwave_js/'
+            f'bulk_set_partial_config_parameters'
+        )
 
         payload_dict = {
-            "instance_id": instance_id,
-            "node_id": node_id,
+            "device_id": device_id,
             "parameter": parameter,
             "value": value
         }
